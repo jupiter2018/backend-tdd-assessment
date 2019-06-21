@@ -25,23 +25,45 @@ class TestEcho(unittest.TestCase):
 
         self.assertEquals(stdout, usage)
 
-    def test_upper(self):
+    def test_upper_long(self):
         """ Running the program with -u and changing text to uppercase """
         arg_list = ['--upper', 'hello']
         parsed = self.parser.parse_args(arg_list)
         self.assertTrue(parsed.upper)
         self.assertEqual(echo.main(arg_list), 'HELLO')
 
-    def test_lower(self):
+    def test_upper_short(self):
+        """ Running the program with -u and changing text to uppercase """
+        arg_list = ['-u', 'hello']
+        parsed = self.parser.parse_args(arg_list)
+        self.assertTrue(parsed.upper)
+        self.assertEqual(echo.main(arg_list), 'HELLO')
+
+    def test_lower_long(self):
         """ Running the program with -l and changing text to lowercase """
         arg_list = ['--lower', 'Hello']
         parsed = self.parser.parse_args(arg_list)
         self.assertEqual(parsed.lower, True)
         self.assertEqual(echo.main(arg_list), 'hello')
 
-    def test_title(self):
+    def test_lower_short(self):
+        """ Running the program with -u and changing text to uppercase """
+        arg_list = ['-l', 'Hello']
+        parsed = self.parser.parse_args(arg_list)
+        self.assertTrue(parsed.upper)
+        self.assertEqual(echo.main(arg_list), 'hello')
+
+    def test_title_long(self):
         """ Running the program with -t and changing text to capitalize """
         arg_list = ['--title', 'hELLo']
+        parsed = self.parser.parse_args(arg_list)
+        print(parsed)
+        self.assertTrue(parsed.title)
+        self.assertEqual(echo.main(arg_list), 'Hello')
+    
+    def test_title_short(self):
+        """ Running the program with -t and changing text to capitalize """
+        arg_list = ['-t', 'hELLo']
         parsed = self.parser.parse_args(arg_list)
         print(parsed)
         self.assertTrue(parsed.title)
